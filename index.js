@@ -30,20 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(
- auth({
-   secret: SESSION_SECRET,
-   authRequired: false,
-   auth0Logout: true,
-   baseURL: APP_URL,
-   // 👇 add this 👇
-   authorizationParams: {
-     response_type: "code id_token",
-     audience: "https://expenses-api",
-   },
-   // 👆 add this 👆
- })
-);
 
 app.use(
   session({
@@ -59,6 +45,12 @@ app.use(
    authRequired: false,
    auth0Logout: true,
    baseURL: APP_URL,
+   // 👇 add this 👇
+   authorizationParams: {
+     response_type: "code id_token",
+     audience: "https://expenses-api",
+   },
+   // 👆 add this 👆
  })
 );
 
